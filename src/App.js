@@ -1,23 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const _handleSignInClick = () => {
+    // Authenticate using via passport api in the backend
+    // Open Twitter login page
+    window.open("https://theyardapp.com/api/auth/google", "_self");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+		<button onClick={_handleSignInClick}>Login</button>
     </div>
   );
 }
