@@ -1,17 +1,16 @@
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import LandingPage from './components/pages/LandingPage.component';
 
 function App() {
 
-  const _handleSignInClick = () => {
-    // Authenticate using via passport api in the backend
-    // Open Twitter login page
-    window.open("https://theyardapp.com/api/auth/google", "_self");
-  };
-
   return (
-    <div className="app">
-		<button onClick={_handleSignInClick}>Login</button>
-    </div>
+    <Router>
+      <Switch>
+        {/* Client app routes */}
+        <Route exact path="/" component={LandingPage}/>
+      </Switch>
+    </Router>
   );
 }
 
