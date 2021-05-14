@@ -9,6 +9,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+// Redux
+import { useDispatch } from "react-redux";
+import allActions from "../../redux/actions/index";
 
 function Copyright() {
   return (
@@ -44,14 +47,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const _handleSignInClick = () => {
-        // Authenticate using via passport api in the backend
-        // Open Twitter login page
-        window.open("https://theyardapp.com/api/auth/google", "_self");
-    };
-
 export default function SignInPage() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const _handleSignInClick = () => {
+        dispatch(allActions.userActions.singinUser());
+    };
 
   return (
     <Container component="main" maxWidth="xs">
