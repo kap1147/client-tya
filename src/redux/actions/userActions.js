@@ -1,8 +1,13 @@
-import {SIGN_IN} from "../types";
+import {SIGN_IN, SIGN_OUT} from "../types";
 
-const singinUser = () => {
-   window.open("https://theyardapp.com/api/auth/google", "_self");
+const signinUser = () => {
+    window.open("https://theyardapp.com/api/auth/google", "_self");
 };
+
+const signoutUser = () => (dispatch) => {
+    window.open("https://theyardapp.com/api/auth/logout", "_self");
+    dispatch({ type: SIGN_OUT});
+}
 
 const getUser = (history) => (dispatch) => {
     fetch("https://theyardapp.com/api/auth", {
@@ -25,6 +30,7 @@ const getUser = (history) => (dispatch) => {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-    singinUser,
+    signinUser,
+    signoutUser,
     getUser
 }

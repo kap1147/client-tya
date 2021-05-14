@@ -52,7 +52,7 @@ export default function SignInPage() {
   const dispatch = useDispatch();
 
   const _handleSignInClick = () => {
-        dispatch(allActions.userActions.singinUser());
+        dispatch(allActions.userActions.signinUser());
     };
 
   return (
