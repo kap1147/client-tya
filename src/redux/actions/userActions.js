@@ -9,7 +9,7 @@ const signoutUser = () => (dispatch) => {
     dispatch({ type: SIGN_OUT});
 }
 
-const getUser = (history) => (dispatch) => {
+const getUser = () => (dispatch) => {
     fetch("https://theyardapp.com/api/auth", {
             method: "GET",
             credentials: "include",
@@ -22,7 +22,6 @@ const getUser = (history) => (dispatch) => {
           if (response.status === 200) return response.json();
     }).then(data => {
         if(data.authenticated && data.user) dispatch({ type: SIGN_IN, payload: data.user });
-        history.push('/');
     }).catch((err) => {
         console.log(err)
     })

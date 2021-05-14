@@ -7,19 +7,16 @@ import SignInPage from './components/pages/SignInPage.component';
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import allActions from './redux/actions/index';
-// React Router
-import { useHistory } from "react-router-dom";
 
 function App() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   React.useEffect(()=>{
     if(!user.authenticated) {
-      dispatch(allActions.userActions.getUser(history))
+      dispatch(allActions.userActions.getUser())
     }
-  }, [user, history, dispatch])
+  }, [user, dispatch])
 
   return (
     <Router>
