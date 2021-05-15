@@ -1,11 +1,11 @@
 import React from 'react'
 
-import NavBar from '../NavBar.component';
+import Navbar from '../navbar/Navbar.container';
 
 export default function LandingPage() {
     return (
         <div className="landing-page">
-            <NavBar />
+            <Navbar />
             <div className="body"></div>
             <footer />
         </div>
