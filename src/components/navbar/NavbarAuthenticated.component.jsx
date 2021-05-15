@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// Redux
+import { useDispatch } from "react-redux";
+import allActions from '../../redux/actions/index';
+// Mui stuff
 import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -88,6 +92,8 @@ const StyledToolbar = withStyles({
 
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -111,6 +117,12 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const _handleSignout = () => {
+        dispatch(allActions.userActions.signoutUser());
+        handleMenuClose();
+}
+
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -124,6 +136,7 @@ export default function PrimarySearchAppBar() {
     >
       <MenuItem onClick={handleMenuClose}><Link to="/profile">Profile</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={_handleSignout}>Sign Out</MenuItem>
     </Menu>
   );
 
@@ -172,16 +185,8 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="static">
         <StyledToolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            TheYardApp
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
