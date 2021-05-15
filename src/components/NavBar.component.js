@@ -9,8 +9,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,7 +47,7 @@ export default function NavBar() {
             <Link to="/">TheYardApp</Link>
           </Typography>
           {user.authenticated && user.user ? 
-            <><Typography>Hi, {user.user.alias}! </Typography><Button onClick={_handleSignout} color="inherit">SignOut</Button></>:
+            <><Avatar alt={user.user.alias} src={user.user.imageURL} /><Button onClick={_handleSignout} color="inherit">SignOut</Button></>:
             <Button color="inherit"><Link to="/signin">SignIn</Link></Button>
           }
           
