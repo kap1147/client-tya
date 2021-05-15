@@ -1,7 +1,11 @@
 import React from 'react'
 import Navbar from '../navbar/Navbar.container'
+// Redux
+import { useSelector } from "react-redux";
 
-export default function ProfilePage({user}) {
+export default function ProfilePage() {
+    const {user} = useSelector((state) => state.user);
+
     return (
         <div>
             <Navbar />
