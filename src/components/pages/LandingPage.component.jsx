@@ -6,7 +6,7 @@ export default function LandingPage() {
     return (
         <div className="landing-page">
             <NavBar />
-            <body />
+            <div className="body"></div>
             <footer />
         </div>
     )

@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container';
 // Redux
 import { useDispatch } from "react-redux";
 import allActions from "../../redux/actions/index";
+import NavBar from '../NavBar.component';
 
 function Copyright() {
   return (
@@ -56,7 +57,10 @@ export default function SignInPage() {
     };
 
   return (
-    <Container component="main" maxWidth="xs">
+
+    <div className="root">
+      <NavBar />
+      <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -87,5 +91,7 @@ export default function SignInPage() {
         <Copyright />
       </Box>
     </Container>
+    </div>
+    
   );
 }

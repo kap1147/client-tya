@@ -3,50 +3,57 @@ import { Link } from 'react-router-dom'
 // Redux
 import { useDispatch ,useSelector } from "react-redux";
 import allActions from '../redux/actions/index';
+// Mui stuff
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
-const navbarStyles = {
-    backgroundColor: '#8bc34a',
-    padding: '20px 300px 20px 300px'
-}
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    padding: '0 150px 0 150px'
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
-const headerStyles = {
-    color: 'white',
-    display: 'flex'
-}
-
-const logoStyles = {
-    flexBasis: '5%'
-}
-
-const searchbarStyles = {
-    flexBasis: '70%',
-    paddingLeft: 15
-}
-
-const linksStyles = {
-    flexBasis: '25%'
-}
+const StyledToolbar = withStyles({
+    gutters: {
+      padding: '0 350px 0 350px'
+  }
+})(Toolbar);
 
 export default function NavBar() {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch();
+    const classes = useStyles();
 
     const _handleSignout = () => {
         dispatch(allActions.userActions.signoutUser())
     }
-    return (
-        <nav style={{...navbarStyles}}>
-            <div className="header" style={{...headerStyles}}>
-                <div className="logo-container" style={{...logoStyles}}><h3>TheYardApp</h3></div>
-                <div className="searchbar-container" style={{...searchbarStyles}}><h4>Search Bar</h4></div>
-                <div className="links-container" style={{...linksStyles}}>
-                    {user.authenticated ? 
-                        <ul><li>Hi {user.user.alias}, <Link onClick={_handleSignout}>SignOut</Link></li></ul> 
-                        : 
-                        <ul><li><Link to="/signin">SignIn</Link></li></ul>}
-                </div>
-             </div>
-            <div className="subheader">Row 2!!</div>
-        </nav>
-    )
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="fixed">
+        <StyledToolbar>
+          <Typography variant="h6" className={classes.title}>
+            <Link to="/">TheYardApp</Link>
+          </Typography>
+          {user.authenticated && user.user ? 
+            <Button onClick={_handleSignout} color="inherit">SignOut</Button> :
+            <Button color="inherit"><Link to="/signin">SignIn</Link></Button>
+          }
+          
+        </StyledToolbar>
+      </AppBar>
+    </div>
+  );
 }
