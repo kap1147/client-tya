@@ -25,7 +25,7 @@ function App() {
         {/* Client app routes */}
         <Route exact path="/" component={LandingPage}/>
         <Route exact path="/signin" component={SignInPage} />
-        <Route exact path="/profile" component={ProfilePage} user={user}/>
+        <Route exact path="/profile" component={ProfilePage} />
         
         
       </Switch>
