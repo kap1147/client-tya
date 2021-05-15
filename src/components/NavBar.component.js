@@ -41,7 +41,7 @@ export default function NavBar() {
                 <div className="searchbar-container" style={{...searchbarStyles}}><h4>Search Bar</h4></div>
                 <div className="links-container" style={{...linksStyles}}>
                     {user.authenticated ? 
-                        <ul><li><Link onClick={_handleSignout}>SignOut</Link></li></ul> 
+                        <ul><li>Hi {user.user.alias}, <Link onClick={_handleSignout}>SignOut</Link></li></ul> 
                         : 
                         <ul><li><Link to="/signin">SignIn</Link></li></ul>}
                 </div>
