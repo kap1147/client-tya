@@ -44,11 +44,11 @@ export default function NavBar() {
     <div className={classes.root}>
       <AppBar position="fixed">
         <StyledToolbar>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h5" className={classes.title}>
             <Link to="/">TheYardApp</Link>
           </Typography>
           {user.authenticated && user.user ? 
-            <Button onClick={_handleSignout} color="inherit">SignOut</Button> :
+            <><Typography>Hi, {user.user.alias}! </Typography><Button onClick={_handleSignout} color="inherit">SignOut</Button></>:
             <Button color="inherit"><Link to="/signin">SignIn</Link></Button>
           }
           
