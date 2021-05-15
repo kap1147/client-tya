@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Pages
 import LandingPage from './components/pages/LandingPage.component';
 import SignInPage from './components/pages/SignInPage.component';
+import ProfilePage from './components/pages/ProfilePage.component';
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import allActions from './redux/actions/index';
@@ -24,6 +25,7 @@ function App() {
         {/* Client app routes */}
         <Route exact path="/" component={LandingPage}/>
         <Route exact path="/signin" component={SignInPage} />
+        <Route exact path="/profile" component={ProfilePage} user={user.user}/>
       </Switch>
     </Router>
   );
