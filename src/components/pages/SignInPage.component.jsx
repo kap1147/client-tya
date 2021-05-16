@@ -52,9 +52,13 @@ export default function SignInPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const _handleSignInClick = () => {
-        dispatch(allActions.userActions.signinUser());
-    };
+  const _handleGoogleSignInClick = () => {
+        dispatch(allActions.userActions.signinUser('google'));
+  };
+
+  const _handleFacebookSignInClick = () => {
+        dispatch(allActions.userActions.signinUser('facebook'));
+  };
 
   return (
 
@@ -74,13 +78,21 @@ export default function SignInPage() {
             fullWidth
             variant="contained"
             className={classes.submit}
-            onClick={_handleSignInClick}
+            onClick={_handleGoogleSignInClick}
           >
             Sign In with Google
           </Button>
+          <Button
+            fullWidth
+            variant="contained"
+            className={classes.submit}
+            onClick={_handleFacebookSignInClick}
+          >
+            Sign In with Facebook
+          </Button>
           <Grid container>
             <Grid item>
-              <Link onClick={_handleSignInClick} variant="body2">
+              <Link  variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

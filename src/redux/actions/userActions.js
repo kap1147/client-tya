@@ -1,7 +1,16 @@
 import {SIGN_IN, SIGN_OUT} from "../types";
 
-const signinUser = () => {
-    window.open("https://theyardapp.com/api/auth/google", "_self");
+const signinUser = (flag) => {
+    switch (flag){
+        case 'google':
+            window.open("https://theyardapp.com/api/auth/google", "_self");
+            break;
+        case 'facebook':
+            window.open("https://theyardapp.com/api/auth/facebook", "_self");
+            break;
+        default: 
+            return null;
+    }; 
 };
 
 const signoutUser = () => (dispatch) => {
