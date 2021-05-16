@@ -31,7 +31,7 @@ export default function LandingPage() {
                       We are busy at work and will be launching soon!
                   </Typography>
                   <Typography component="p">
-                      Thanks for visiting!
+                      Thanks for visiting and come back soon!
                   </Typography>
                 </div>
             </Container>
