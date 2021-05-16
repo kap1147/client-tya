@@ -29,7 +29,7 @@ export default function AboutPage() {
                     Who are we?
                 </Typography>
                 <Typography component="p">
-                    Here's a some details on our great team!
+                    Here's some details on our great team!
                 </Typography>
                 </div>
             </Container>
