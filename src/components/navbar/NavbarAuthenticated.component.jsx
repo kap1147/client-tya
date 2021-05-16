@@ -207,9 +207,7 @@ export default function PrimarySearchAppBar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show ad alerts" color="inherit">
-              <Badge badgeContent={3} color="secondary">
                 <ListAltIcon />
-              </Badge>
             </IconButton>
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
