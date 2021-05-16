@@ -3,13 +3,18 @@ import React from 'react'
 import Navbar from '../navbar/Navbar.container';
 // Mui stuff
 import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  body: {
-      padding: '0 350px 0 350px',
-      textAlign: 'center',
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 }));
 export default function LandingPage() {
@@ -17,7 +22,19 @@ export default function LandingPage() {
     return (
         <div className={classes.root}>
             <Navbar />
-            <div className={classes.body}><h3>Hello World!</h3> <p>We are busy at work and will be launching soon!</p><p>Thanks for visiting!</p></div>
+            <Container component="main" maxWidth="sm">
+                <div className={classes.paper}>
+                  <Typography component="h1" variant="h2">
+                      Hello World!
+                  </Typography>
+                  <Typography component="p">
+                      We are busy at work and will be launching soon!
+                  </Typography>
+                  <Typography component="p">
+                      Thanks for visiting!
+                  </Typography>
+                </div>
+            </Container>
             <footer />
         </div>
     )
