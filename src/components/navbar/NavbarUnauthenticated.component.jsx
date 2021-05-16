@@ -24,6 +24,12 @@ const StyledToolbar = withStyles({
   }
 })(Toolbar);
 
+const StyledButton = withStyles({
+    root: {
+      textTransform: 'none'
+  }
+})(Button);
+
 
 export default function ButtonAppBar() {
   const classes = useStyles();
@@ -35,7 +41,9 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             <Link to="/">TheYardApp</Link>
           </Typography>
-          <Button color="inherit"><Link to="/signin">SignIn</Link></Button>
+          <StyledButton color="inherit"><Link to="/about">AboutUs</Link></StyledButton>
+          <StyledButton color="inherit"><Link to="/contact">ContactUs</Link></StyledButton>
+          <StyledButton color="inherit"><Link to="/signin">SignIn</Link></StyledButton>
         </StyledToolbar>
       </AppBar>
     </div>
