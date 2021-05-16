@@ -3,14 +3,18 @@ import React from 'react'
 import Navbar from '../navbar/Navbar.container';
 // Mui stuff
 import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  body: {
-      padding: '0 350px 0 350px',
-      textAlign: 'center',
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 }));
 
@@ -19,10 +23,16 @@ export default function ContactPage() {
     return (
         <div className={classes.root}>
             <Navbar />
-            <div className={classes.body}>
-                <h2>Contact Us!</h2>
-                <p>We're all ears.</p>
-            </div>
+            <Container component="main" maxWidth="sm">
+                <div className={classes.paper}>
+                  <Typography component="h1" variant="h2">
+                      Contact Us!
+                  </Typography>
+                  <Typography component="p">
+                      We're all ears.
+                  </Typography>
+                </div>
+            </Container>
             <footer />
         </div>
     )

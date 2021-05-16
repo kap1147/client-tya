@@ -4,14 +4,17 @@ import { Link } from 'react-router-dom';
 import Navbar from '../navbar/Navbar.container';
 // Mui stuff
 import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  body: {
-      padding: '0 350px 0 350px',
-      textAlign: 'center',
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 }));
 
@@ -21,8 +24,9 @@ export default function PrivacyPage() {
     return (
         <div className={classes.root}>
             <Navbar />
-            <div className={classes.body}>
-                <h1>Privacy Policy</h1>
+            <Container component="main" maxWidth="md">
+                <div className={classes.paper}>
+                    <h1>Privacy Policy</h1>
 <p>Last updated: May 14, 2021</p>
 <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
 <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the <a href="https://www.freeprivacypolicy.com/free-privacy-policy-generator/" target="_blank">Privacy Policy Generator</a>.</p>
@@ -210,6 +214,7 @@ export default function PrivacyPage() {
 <li>By visiting this page on our website: <Link to="/contact">https://theyardapp.com/contact</Link></li>
 </ul>
             </div>
+            </Container>
         </div>
     )
 }
