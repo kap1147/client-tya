@@ -6,6 +6,8 @@ import LandingPage from './components/pages/LandingPage.component';
 import SignInPage from './components/pages/SignInPage.component';
 import ProfilePage from './components/pages/ProfilePage.component';
 import PrivacyPage from './components/pages/PrivacyPage.component';
+import ContactPage from './components/pages/ContactPage.component';
+import AboutPage from './components/pages/AboutPage.component';
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import allActions from './redux/actions/index';
@@ -27,6 +29,8 @@ function App() {
         <Route exact path="/" component={LandingPage}/>
         <Route exact path="/signin" component={SignInPage} />
         <Route exact path="/profile" component={ProfilePage} />
+        <Route exact path="/contact" component={ContactPage} />
+        <Route exact path="/about" component={AboutPage} />
         <Route exact path="/privacy" component={PrivacyPage} />
         
       </Switch>
