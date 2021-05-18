@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 // Redux
 import { useDispatch } from "react-redux";
 import allActions from '../../redux/actions/index';
+// Components
+import Search from '../Search.component'
 // Mui stuff
 import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -195,14 +197,7 @@ export default function PrimarySearchAppBar() {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+	    <Search />
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
