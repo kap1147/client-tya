@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
 }));
-export default function LandingPage() {
+export default function LandingPage({user}) {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -34,7 +34,8 @@ export default function LandingPage() {
                   <Typography component="p">
                       Thanks for visiting and come back soon!
                   </Typography>
-                  <AddPostModal />
+                  {user ?  <AddPostModal /> : null}
+                 
                 </div>
             </Container>
             <footer />
