@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// HOCs
+import AuthRoute from './utils/hocs/AuthRoute.hoc';
 // Pages
 import LandingPage from './components/pages/LandingPage.component';
 import SignInPage from './components/pages/SignInPage.component';
@@ -28,7 +30,7 @@ function App() {
         {/* Client app routes */}
         <Route exact path="/" component={LandingPage}/>
         <Route exact path="/signin" component={SignInPage} />
-        <Route exact path="/profile" component={ProfilePage} />
+        <AuthRoute exact path="/profile" component={ProfilePage} authenticated={user.authenticated}/>
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/privacy" component={PrivacyPage} />
