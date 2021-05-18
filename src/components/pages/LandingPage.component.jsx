@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function LandingPage({user}) {
     const classes = useStyles();
+
+    const LandingPageMarkup = user ? <AddPostModal  /> : null;
+
     return (
         <div className={classes.root}>
             <Navbar />
@@ -34,7 +37,7 @@ export default function LandingPage({user}) {
                   <Typography component="p">
                       Thanks for visiting and come back soon!
                   </Typography>
-                  {user ?  <AddPostModal /> : null}
+                  {LandingPageMarkup}
                  
                 </div>
             </Container>
