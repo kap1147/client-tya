@@ -1,6 +1,7 @@
 import React from 'react'
 // Components
 import Navbar from '../navbar/Navbar.container';
+import AddPostModal from '../AddPostModal.component';
 // Mui stuff
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -33,6 +34,7 @@ export default function LandingPage() {
                   <Typography component="p">
                       Thanks for visiting and come back soon!
                   </Typography>
+                  <AddPostModal />
                 </div>
             </Container>
             <footer />
