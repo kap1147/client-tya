@@ -11,7 +11,7 @@ export default function AuthRoute({
       {...rest}
       render={(props) =>
         user.authenticated ? (
-          <Component {...props}> </Component>
+          <Component {...props} user={user.user}> </Component>
         ) : (
           <Redirect to="/" />
         )

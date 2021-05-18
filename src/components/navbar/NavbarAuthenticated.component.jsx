@@ -189,7 +189,7 @@ export default function PrimarySearchAppBar() {
       <AppBar position="static">
         <StyledToolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="/">TheYardApp</Link>
+            <Link to="/home">TheYardApp</Link>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
