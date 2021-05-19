@@ -2,7 +2,6 @@ import React from 'react'
 // Components
 import Navbar from '../navbar/Navbar.container';
 import AddPostModal from '../AddPostModal.component';
-import Search from '../Search.component';
 // Mui stuff
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -22,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LandingPage(props) {
     const classes = useStyles();
 	console.log(props)
-    const LandingPageMarkup = props.user ?<><AddPostModal  /><Search /></> : null;
+    const LandingPageMarkup = props.user ? <AddPostModal  /> : null;
 	console.log(LandingPageMarkup);
     return (
         <div className={classes.root}>
