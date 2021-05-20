@@ -16,13 +16,26 @@ import allActions from './redux/actions/index';
 
 function App() {
   const user = useSelector((state) => state.user);
+  const query = useSelector((state) => state.query);
   const dispatch = useDispatch();
 
   React.useEffect(()=>{
     if(!user.authenticated) {
       dispatch(allActions.userActions.getUser())
     }
-  }, [user, dispatch])
+  }, [user, dispatch]);
+
+  React.useEffect(() => {
+    if (query.length === 0){
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          dispatch(allActions.queryActions.setQuery({lng:position.coords.longitude, lat: position.coords.latitude}))
+        });
+      }
+    }
+    dispatch(allActions.postActions.fetchPosts(query));
+  }, [query]);
+
 
   return (
     <Router>

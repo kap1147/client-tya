@@ -1,9 +1,11 @@
 import userActions from './userActions';
 import queryActions from './queryActions';
+import postActions from './postActions';
 
 const allActions = {
     userActions,
-    queryActions
+    queryActions,
+    postActions
 }
 
 export default allActions;
