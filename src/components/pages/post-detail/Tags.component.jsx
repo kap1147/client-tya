@@ -1,7 +1,8 @@
 import React from 'react';
+// Components
+import CustomIcon from '../../CustomIcon.component';
 //Mui Stuff
 import { makeStyles } from '@material-ui/core/styles';
-import CustomIcon from '../../components/CustomIcon';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({

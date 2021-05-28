@@ -26,7 +26,7 @@ export default function LandingPage(props) {
     const posts = useSelector((state) => state.posts);
     const classes = useStyles();
 	console.log(props)
-    const LandingPageMarkup = props.user ? <AddPostModal  /> : null;
+    const LandingPageMarkup = props.user ? <><AddPostModal  /></> : null;
 	console.log(LandingPageMarkup);
     let postMarkup = posts ? (
       posts.map((post) => (

@@ -1,7 +1,7 @@
 import React from 'react';
-
+// 3rd party
 import Axios from 'axios';
-
+// Mui stuff
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const Point = ({location}) => {

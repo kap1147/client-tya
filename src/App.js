@@ -10,6 +10,7 @@ import ProfilePage from './components/pages/ProfilePage.component';
 import PrivacyPage from './components/pages/PrivacyPage.component';
 import ContactPage from './components/pages/ContactPage.component';
 import AboutPage from './components/pages/AboutPage.component';
+import PostDetailPage from './components/pages/post-detail/PostDetailPage.container';
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import allActions from './redux/actions/index';
@@ -48,7 +49,13 @@ function App() {
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/privacy" component={PrivacyPage} />
-        
+	{/**/}
+	<Route 
+	  exact
+	  path="/posts/:postId" 
+	  component={PostDetailPage}
+	  authenticated={user.authenticated}
+        />
       </Switch>
     </Router>
   );

@@ -1,4 +1,4 @@
-const options =  [
+const Options =  [
         {id: 0, value: '00:00', display: 'Midnight', period: null},
         {id: 1, value: '00:30', display: '12:30', period: 'AM'},
         {id: 2, value: '01:00', display: '1:00', period: 'AM'},
@@ -48,4 +48,4 @@ const options =  [
         {id: 46, value: '23:00', display: '11:00', period: 'PM'},
         {id: 47, value: '23:30', display: '11:30', period: 'PM'},
     ]
-export default options;
+export default Options;

@@ -1,4 +1,5 @@
 import React from 'react';
+// Components
 import PriceContent from './PriceContent.component';
 //Mui Stuff
 import { makeStyles } from '@material-ui/core/styles';

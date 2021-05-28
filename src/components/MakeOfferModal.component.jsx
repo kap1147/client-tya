@@ -10,7 +10,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 // Components
-import TimeInput from '../TimeInput/TimeInput.component';
+import TimeInput from './TimeInput.component';
 
 export default function MakeOfferModal(props) {
     const [state, setState] = React.useState({open: false, selected: null,})

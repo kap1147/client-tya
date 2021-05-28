@@ -1,10 +1,10 @@
 import React from 'react';
-// time shoices obj
-import options from '../utils/options'
+import './timeInput.styles.scss';
+import Options from './Options'
 
 export default function TimeInput(props){
     //TODO preselect user's requested time
-    const timeMarkup = options.map(option => 
+    const timeMarkup = Options.map(option => 
         <button 
             className={(option.id === props.selected)? 'button selected' : 'button'} 
             id={option.id} 

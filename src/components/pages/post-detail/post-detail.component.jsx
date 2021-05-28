@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
+// 3rd party
 import axios from "axios";
+import { Carousel } from 'react-responsive-carousel';
+import GoogleMapComponent from '../../GoogleMap.component'
+// Components
+import CustomIcon from '../../CustomIcon.component';
+import ImageContainer from '../../ImagePreview.component';
 //Mui Stuff
 import { makeStyles } from '@material-ui/core/styles';
 import Container from "@material-ui/core/Container";
@@ -11,22 +17,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Divider from '@material-ui/core/Divider';
 import Image from 'material-ui-image';
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
-import { Carousel } from 'react-responsive-carousel';
 import { rgbToHex, Typography } from "@material-ui/core";
-
-import GoogleMapComponent from '../../components/GoogleMap.js'
-
-import CustomIcon from '../../components/CustomIcon.js';
 import zIndex from "@material-ui/core/styles/zIndex";
-import ImageContainer from "../../components/ImagePreview.js";
 
 
 const useStyles = makeStyles((theme) => ({

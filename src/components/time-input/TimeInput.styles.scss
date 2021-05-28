@@ -1,0 +1,31 @@
+.time-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 10px 0 10px 0;
+}
+
+.time-container .selected {
+    background-color: #002e03;
+    color: white;
+    pointer-events: none;
+}
+
+.time-container .button {
+  cursor: pointer;
+  background-color: #66bb6a;
+  border-radius: 25px;
+  margin: 0 2px 0 0;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  height: 20px;
+  white-space: nowrap;
+  border-style: none;
+
+  }
+
+.time-container .button:hover {
+      background-color: #8ce291;
+      color: black;
+}
