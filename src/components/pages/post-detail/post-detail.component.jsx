@@ -138,7 +138,7 @@ function PostDetail({post, google}) {
   
   const headerMarkup = post ? <Grid container item xs={12}><span className={classes.dollar}><CustomIcon id='dollar' dims={{h: 25, w:25}}/></span><Typography variant='h4'>{post.price}</Typography> </Grid> : null
 
-  const subHeaderMarkup = post ? <Grid container item xs={12}><span className={classes.globeIcon}><LocationOnIcon/></span><Typography variant='subtitle1'>{city}, {state}</Typography> </Grid> : null
+  const subHeaderMarkup = post ? <Grid container item xs={12}><span className={classes.globeIcon}><LocationOnIcon/></span><Typography variant='subtitle'>{city}, {state}</Typography> </Grid> : null
 return (
     <div className={classes.root}>
 	<Navbar />

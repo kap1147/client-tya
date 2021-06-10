@@ -46,7 +46,7 @@ const Post = ({post}) => {
         </div>
         <div className='col-3'></div>
       </div>
-      <div id="profile"><ProfileCard user={post.authorID}/></div>
+      <div id="profile"><ProfileCard user={post.author}/></div>
     </div>
     : <p>Loading Post</p>
     return postMarkup;
