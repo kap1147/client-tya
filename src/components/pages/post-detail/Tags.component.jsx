@@ -30,7 +30,8 @@ const Tags = (props) => {
                     <div className={classes.icon}><CustomIcon id={tag.icon} dims={{h: 25, w:25}}/></div>
                     <div className={classes.title}><Typography variant='h6'>{tag.title}</Typography></div>
                     <div className={classes.description}>{tag.description}</div>
-                </div>) 
+                </div>)
+    console.log(props.tag);
     return tagMarkup;
     
 }

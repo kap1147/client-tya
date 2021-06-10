@@ -17,4 +17,13 @@ const fetchPost = (id) => async  (dispatch) => {
   }
 }
 
-export default { fetchPosts, fetchPost };
+const createBid = (data, id) => async (dispatch) => {
+  try{
+    const results = await axios.post(`https://theyardapp.com/api/posts/${id}/bid`, data);
+    return results.data;
+  }catch(err){
+    console.log(err);
+  }
+}
+
+export default { fetchPosts, fetchPost, createBid };

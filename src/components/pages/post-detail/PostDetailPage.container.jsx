@@ -3,6 +3,7 @@ import Axios from "axios";
 //Components
 import PostDetail from "./post-detail.component";
 import Post from './Post.component.jsx';
+import Navbar from '../../navbar/Navbar.container';
 
 export default function PostDetailContainer(props) {
   const [post, setPost] = useState({});
@@ -17,5 +18,10 @@ export default function PostDetailContainer(props) {
     fetchPost();
   }, [props.match.params.postId]);
   const postMarkup = post ? <Post post={post} /> : <p>Loading...</p>;
-  return postMarkup;
+  return (
+    <div>
+      <Navbar />
+      {postMarkup}
+    </div>
+  );
 }

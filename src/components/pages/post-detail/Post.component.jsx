@@ -16,7 +16,6 @@ import Typography from '@material-ui/core/Typography';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 const Post = ({post}) => {
-    if(post.tags) console.log(post.tags.length);
     dayjs.extend(relativeTime);
     const imageContainerMarkUp = post.photos ? <ImageContainer post={post} /> : <p>...loading images</p>;
     const content = post ? <PostContent post={post} /> : <p>...loading content</p>
@@ -24,7 +23,7 @@ const Post = ({post}) => {
     ? <div className="mapWrapper">
       <GoogleMapComponent position={{lng: post.location.coordinates[0],lat: post.location.coordinates[1]}}></GoogleMapComponent><Typography>Locations are approximate to protect user's privacy.</Typography></div> 
     : <p>...Loading</p>
-    return (
+    const postMarkup = post ?  
         <div className="container">
       <div id="imageContainer">{imageContainerMarkUp}</div>
       <div id="ad"><div className="ad">Ad</div></div>
@@ -47,9 +46,10 @@ const Post = ({post}) => {
         </div>
         <div className='col-3'></div>
       </div>
-      <div id="profile"><ProfileCard user={post.author}/></div>
+      <div id="profile"><ProfileCard user={post.authorID}/></div>
     </div>
-  );
+    : <p>Loading Post</p>
+    return postMarkup;
 }
 
 export default Post;

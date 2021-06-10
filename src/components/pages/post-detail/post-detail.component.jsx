@@ -6,6 +6,7 @@ import GoogleMapComponent from '../../GoogleMap.component'
 // Components
 import CustomIcon from '../../CustomIcon.component';
 import ImageContainer from '../../ImagePreview.component';
+import Navbar from '../../navbar/Navbar.container';
 //Mui Stuff
 import { makeStyles } from '@material-ui/core/styles';
 import Container from "@material-ui/core/Container";
@@ -140,6 +141,7 @@ function PostDetail({post, google}) {
   const subHeaderMarkup = post ? <Grid container item xs={12}><span className={classes.globeIcon}><LocationOnIcon/></span><Typography variant='subtitle1'>{city}, {state}</Typography> </Grid> : null
 return (
     <div className={classes.root}>
+	<Navbar />
         <Grid container spacing={2} >
             { post.photos
               ? <ImageContainer post={post} />

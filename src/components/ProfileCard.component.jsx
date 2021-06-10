@@ -47,17 +47,18 @@ const useStyles = makeStyles((theme) => ({
 const Profile = ({user}) => {
     const classes = useStyles();
     const [state, setState] = React.useState({modalOpen: false})
+
     function handleModalClick(){
         setState({modalOpen: true})
     }
 
-    const profileMarkup = user 
-        ? <div className={classes.wrapper}>
+    let profileMarkup = user ? 
+        <div className={classes.wrapper}> 
             <div className={classes.root}>
                 <div className={classes.avatarWrapper}>
-                    <Avatar className={classes.avatar} src={user.avatar} alt={user.username} />
+                    <Avatar className={classes.avatar} src={user.imageURL} alt={user.alias} />
                     <div className={classes.userDetails}>
-                        <div className={classes.username}><Typography variant='h6'>{user.username}</Typography></div>
+                        <div className={classes.username}><Typography variant='h6'>{user.alias}</Typography></div>
                         <div className={classes.ratings}>5.0</div>
                     </div>
                 </div>
@@ -67,10 +68,9 @@ const Profile = ({user}) => {
                     <Button color="secondary"fullWidth variant='contained'>Send Message</Button>
                 </div>
             </div>
-        </div> 
-        : <p>...loading profile</p>
-
+        </div> : <p>loading...</p> 
     return profileMarkup;
+
 }
 
 export default Profile;
