@@ -18,6 +18,7 @@ import allActions from './redux/actions/index';
 function App() {
   const user = useSelector((state) => state.user);
   const query = useSelector((state) => state.query);
+  const socket = useSelector((state) => state.socket);
   const dispatch = useDispatch();
 
   React.useEffect(()=>{
@@ -36,6 +37,19 @@ function App() {
     }
     dispatch(allActions.postActions.fetchPosts(query));
   }, [query]);
+
+  React.useEffect(()=> {
+    if (!socket.socket && user.authenticated && !socket.loading){
+      dispatch(allActions.socketActions.createSocket());
+    }
+    if (socket.socket) {
+      console.log(socket);
+      dispatch(allActions.socketActions.userOnline(socket.socket));
+      return () => {
+        dispatch(allActions.socketActions.closeSocket(socket.socket))
+      }
+    }
+  }, [socket, user]);
 
 
   return (

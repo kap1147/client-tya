@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import userReducer from "./reducers/userReducer";
 import queryReducer from "./reducers/queryReducer";
 import postReducer from "./reducers/postReducer";
+import socketReducer from "./reducers/socketReducer";
 
 const initialState = {};
 
@@ -12,7 +13,8 @@ const middleware = [thunk];
 const reducers = combineReducers({
   user: userReducer,
   posts: postReducer,
-  query: queryReducer
+  query: queryReducer,
+  socket: socketReducer
 });
 
 
