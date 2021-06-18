@@ -1,4 +1,5 @@
 import {SIGN_IN, SIGN_OUT} from "../types";
+import Cookies from 'js-cookie';
 
 const signinUser = (flag) => {
     switch (flag){
@@ -14,18 +15,37 @@ const signinUser = (flag) => {
 };
 
 const signoutUser = () => (dispatch) => {
-    window.open("https://theyardapp.com/api/auth/logout", "_self");
+    let accessToken = localStorage.getItem('accessToken');
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.clear();
     dispatch({ type: SIGN_OUT});
+    fetch("https://theyardapp.com/api/auth/logout", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            Accept: "application/json",
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true,
+		"Authorization": `Bearer ${accessToken}`
+        }
+    });
 }
-
+	
 const getUser = () => (dispatch) => {
-    fetch("https://theyardapp.com/api/auth", {
+    let refreshToken = Cookies.get('refreshToken');
+    let accessToken = Cookies.get('accessToken');
+    if (refreshToken){
+        localStorage.setItem('refreshToken', refreshToken);
+        	
+        fetch("https://theyardapp.com/api/auth", {
             method: "GET",
             credentials: "include",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Credentials": true
+                "Access-Control-Allow-Credentials": true,
+		"Authorization": `Bearer ${accessToken}`
             }
     }).then(response => {
           if (response.status === 200) return response.json();
@@ -34,6 +54,11 @@ const getUser = () => (dispatch) => {
     }).catch((err) => {
         console.log(err)
     })
+    };
+    if (accessToken){
+        localStorage.setItem('accessToken', accessToken);
+    };
+    
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
