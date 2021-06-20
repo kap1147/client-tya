@@ -6,7 +6,7 @@ import AddPostModal from '../AddPostModal.component';
 import StickyFooter from '../StickyFooter.component';
 import PostCard from '../PostCard.component';
 import PingSocket from '../PingSocket.component';
-import GoogleButton from '../GoogleButton.component';
+import TokenButton from '../TokenButton.component';
 // Mui stuff
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -29,7 +29,7 @@ export default function LandingPage(props) {
     const posts = useSelector((state) => state.posts);
     const classes = useStyles();
 	console.log(props)
-    const LandingPageMarkup = props.user ? <><AddPostModal /><PingSocket /></> : <GoogleButton />;
+    const LandingPageMarkup = props.user ? <><AddPostModal /><PingSocket /><TokenButton /></> : null;
     let postMarkup = posts ? (
       posts.map((post) => (
         <Grid item xs={12} md={4} lg={3} key={post._id}>

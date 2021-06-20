@@ -20,14 +20,15 @@ import allActions from './redux/actions/index';
 
 var initialTokens = {
     refreshToken: localStorage.getItem('refreshToken'),
-    accessToken: localStorage.getItem('accessToken')
+    accesstoken: localStorage.getItem('accessToken')
 };
 
 function App() {
   const user = useSelector((state) => state.user);
   const query = useSelector((state) => state.query);
   const socket = useSelector((state) => state.socket);
-  const [tokens, setTokens] = React.useState(initialTokens);
+  const [accessToken, setAccessToken] = React.useState(localStorage.getItem('accessToken');
+  const [refreshToken, setRefreshToken] = React.useState(Cookies.get('refreshToken'));
   const dispatch = useDispatch();
 
   React.useEffect(()=>{
