@@ -34,7 +34,7 @@ function App() {
   React.useEffect(() => {
     if (auth) {
       console.log(auth);
-      if (!auth.authenticated && !Boolean(auth.accessToken) && auth.refreshToken) {
+      if (!auth.authenticated && auth.accessToken && auth.refreshToken) {
         dispatch(allActions.authActions.getToken());
       };
       if (!auth.authenticated && auth.accessToken && auth.refreshToken) {
