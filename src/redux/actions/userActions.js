@@ -14,12 +14,8 @@ const signinUser = (flag) => {
     }; 
 };
 
-const signoutUser = () => (dispatch) => {
-    let accessToken = localStorage.getItem('accessToken');
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.clear();
-    dispatch({ type: SIGN_OUT});
+const signoutUser = (token) => (dispatch) => {
+    console.log(token);
     fetch("https://theyardapp.com/api/auth/logout", {
         method: "GET",
         credentials: "include",
@@ -27,8 +23,10 @@ const signoutUser = () => (dispatch) => {
             Accept: "application/json",
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Credentials": true,
-		"Authorization": `Bearer ${accessToken}`
+		"Authorization": `Bearer ${token}`
         }
+    }).then(response => {
+        dispatch({ type: SIGN_OUT});
     });
 }
 	

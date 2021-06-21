@@ -5,12 +5,12 @@ import NavbarUnauthenticated from './NavbarUnauthenticated.component';
 import { useSelector } from "react-redux";
 
 export default function NavbarContainer() {
-    const user = useSelector(state => state.user)
+    const auth = useSelector(state => state.auth)
 
     return (
-      <>
-        {user.authenticated && user.user 
-        ?  <NavbarAuthenticated user={user.user} />
+      <>	
+        {auth.authenticated 
+        ?  <NavbarAuthenticated token={auth.refreshToken} />
         :  <NavbarUnauthenticated />
         }
       </>

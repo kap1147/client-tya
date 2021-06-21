@@ -95,13 +95,11 @@ const StyledToolbar = withStyles({
   }
 })(Toolbar);
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -123,7 +121,6 @@ export default function PrimarySearchAppBar() {
   };
 
   const _handleSignout = () => {
-        dispatch(allActions.userActions.signoutUser());
         handleMenuClose();
 }
 
@@ -141,7 +138,7 @@ export default function PrimarySearchAppBar() {
     >
       <MenuItem onClick={handleMenuClose}><Link to="/profile">Profile</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem><Link to="/signout">Sign Out</Link></MenuItem>
+      <MenuItem><Link to="/signout" token={props.token}>Sign Out</Link></MenuItem>
     </Menu>
   );
 

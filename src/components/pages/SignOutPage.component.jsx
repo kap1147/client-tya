@@ -36,12 +36,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignOutPage({user}) {
+export default function SignOutPage(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  console.log(props);
   React.useEffect(() => {
-    dispatch(allActions.userActions.signoutUser());
+    dispatch(allActions.userActions.signoutUser(props.token));
+    dispatch(allActions.authActions.isAuthenticated(false));
   }, []);
 
   return (

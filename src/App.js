@@ -34,14 +34,21 @@ function App() {
   React.useEffect(() => {
     if (auth) {
       console.log(auth);
-      if (!auth.authenticated && auth.accessToken && auth.refreshToken) {
+      if (!auth.authenticated && !auth.accessToken && auth.refreshToken) {
         dispatch(allActions.authActions.getToken());
       };
       if (!auth.authenticated && auth.accessToken && auth.refreshToken) {
-	dispatch(allActions.authActions.isAuthenticated(true))
+	dispatch(allActions.authActions.isAuthenticated(true));
+	dispatch(allActions.userActions.getUser(auth.accessToken));
       };
     };
   }, [auth, refreshToken]);
+
+  React.useEffect(() => {
+    if (user){
+      console.log(user);
+    };
+  },[user]);
 
   React.useEffect(() => {
     if (query.length === 0){
@@ -74,10 +81,10 @@ function App() {
       <Switch>
         {/* Client app routes */}
         <Route exact path="/" component={LandingPage} />
-        <AuthRoute exact path="/home" component={LandingPage} user={user}/>
+        <AuthRoute exact path="/home" component={LandingPage} />
         <Route exact path="/signin" component={SignInPage} />
-        <AuthRoute exact path="/signout" component={SignOutPage} user={user}/>
-	<AuthRoute exact path="/profile" component={ProfilePage} user={user}/>
+        <AuthRoute exact path="/signout" component={SignOutPage} />
+	<AuthRoute exact path="/profile" component={ProfilePage} />
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/privacy" component={PrivacyPage} />
@@ -86,7 +93,7 @@ function App() {
 	  exact
 	  path="/posts/:postId" 
 	  component={PostDetailPage}
-	  authenticated={user.authenticated}
+	  authenticated={auth.authenticated}
         />
       </Switch>
     </Router>
