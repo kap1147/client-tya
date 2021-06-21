@@ -17,27 +17,32 @@ import PostDetailPage from './components/pages/post-detail/PostDetailPage.contai
 import { useSelector, useDispatch } from "react-redux";
 import allActions from './redux/actions/index';
 
-
-var initialTokens = {
-    refreshToken: localStorage.getItem('refreshToken'),
-    accesstoken: localStorage.getItem('accessToken')
-};
-
 function App() {
   const user = useSelector((state) => state.user);
+  const auth = useSelector((state) => state.auth);
   const query = useSelector((state) => state.query);
   const socket = useSelector((state) => state.socket);
-  const [accessToken, setAccessToken] = React.useState(localStorage.getItem('accessToken');
   const [refreshToken, setRefreshToken] = React.useState(Cookies.get('refreshToken'));
   const dispatch = useDispatch();
 
-  React.useEffect(()=>{
-    if(!user.authenticated) {
-      if (Cookies.get('accessToken')){
-        dispatch(allActions.userActions.getUser())
-      }
-    }
-  }, [user, Cookies,  dispatch]);
+  React.useEffect(() => {
+    if (refreshToken){
+      dispatch(allActions.authActions.setToken(refreshToken, 'r'));
+    };
+  },[refreshToken]);
+
+  React.useEffect(() => {
+    if (auth) {
+      console.log(auth);
+      if (!auth.authenticated && !Boolean(auth.accessToken) && auth.refreshToken) {
+        dispatch(allActions.authActions.getToken());
+	console.log('we have a refresh token, letsss gooooo');
+      };
+      if (!auth.authenticated && auth.accessToken && auth.refreshToken) {
+	dispatch(allActions.authActions.isAuthenticated(true))
+      };
+    };
+  }, [auth, refreshToken]);
 
   React.useEffect(() => {
     if (query.length === 0){
@@ -59,6 +64,7 @@ function App() {
       dispatch(allActions.socketActions.userOnline(socket.socket));
       return () => {
         dispatch(allActions.socketActions.closeSocket(socket.socket))
+        dispatch(allActions.authActions.clearAuth());
       }
     }
   }, [socket, user]);

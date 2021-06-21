@@ -1,3 +1,8 @@
+// Authentication
+export const SET_AUTH = 'SET_AUTH';
+export const CLEAR_AUTH = 'CLEAR_AUTH';
+export const SET_REFRESH_TOKEN = 'SET_REFRESH_TOKEN';
+export const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
 // User
 export const SET_AUTHENTICATED = "SET_AUTHENTICATED";
 export const SET_USER = "SET_USER";

@@ -32,12 +32,8 @@ const signoutUser = () => (dispatch) => {
     });
 }
 	
-const getUser = () => (dispatch) => {
-    let refreshToken = Cookies.get('refreshToken');
-    let accessToken = Cookies.get('accessToken');
-    if (refreshToken){
-        localStorage.setItem('refreshToken', refreshToken);
-        	
+const getUser = (token) => (dispatch) => {
+    if (token){
         fetch("https://theyardapp.com/api/auth", {
             method: "GET",
             credentials: "include",
@@ -45,18 +41,15 @@ const getUser = () => (dispatch) => {
                 Accept: "application/json",
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Credentials": true,
-		"Authorization": `Bearer ${accessToken}`
+		"Authorization": `Bearer ${token}`
             }
-    }).then(response => {
-          if (response.status === 200) return response.json();
-    }).then(data => {
-        if(data.authenticated && data.user) dispatch({ type: SIGN_IN, payload: data.user });
-    }).catch((err) => {
-        console.log(err)
-    })
-    };
-    if (accessToken){
-        localStorage.setItem('accessToken', accessToken);
+        }).then(response => {
+            if (response.status === 200) return response.json();
+        }).then(data => {
+            if(data.authenticated && data.user) dispatch({ type: SIGN_IN, payload: data.user });
+        }).catch((err) => {
+            console.log(err)
+        })
     };
     
 }
