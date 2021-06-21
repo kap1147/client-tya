@@ -36,7 +36,6 @@ function App() {
       console.log(auth);
       if (!auth.authenticated && !Boolean(auth.accessToken) && auth.refreshToken) {
         dispatch(allActions.authActions.getToken());
-	console.log('we have a refresh token, letsss gooooo');
       };
       if (!auth.authenticated && auth.accessToken && auth.refreshToken) {
 	dispatch(allActions.authActions.isAuthenticated(true))
