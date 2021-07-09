@@ -2,16 +2,20 @@ import {
 	SET_AUTH, 
 	CLEAR_AUTH, 
 	SET_REFRESH_TOKEN, 
-	SET_ACCESS_TOKEN
+	SET_ACCESS_TOKEN,
+	SIGN_OUT
 } from '../types';
 
 const isAuthenticated = (flag) => (dispatch) => {
     switch (flag) {
-        case true:
+        case true:    
             dispatch({type: SET_AUTH, payload: true});
 	    break;
         case false:
+            localStorage.removeItem('accessToken');
 	    dispatch({type: CLEAR_AUTH});
+	    dispatch({type: SIGN_OUT});
+	    window.location.replace('https://theyardapp.com');
 	    break;
         default:
 	    break;
@@ -47,9 +51,16 @@ const getToken = () => (dispatch) => {
 	});
 };
 
+const handleError = (res) => (dispatch) => {
+    if (res.err.tokenExp) {
+        dispatch({type: SET_ACCESS_TOKEN, payload: null});
+    };
+};
+
 export default {
     isAuthenticated,
     setToken,
     getToken,
-    clearAuth
+    clearAuth,
+    handleError
 };

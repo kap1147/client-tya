@@ -19,7 +19,6 @@ export default function (state = initialState, action) {
       };
     case SIGN_IN:
       return {
-        ...state,
         authenticated: true,
         user: {
             ...action.payload
@@ -27,7 +26,6 @@ export default function (state = initialState, action) {
       };
       case SIGN_OUT:
       return {
-        ...state,
         authenticated: false,
         user: null
       };

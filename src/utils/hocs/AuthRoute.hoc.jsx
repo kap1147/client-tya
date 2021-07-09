@@ -12,7 +12,7 @@ export default function AuthRoute({
         {...rest}
         render={(props) =>
           auth.authenticated ? (
-            <Component {...props} token={auth.accessToken} > </Component>
+            <Component {...props} isAuthenticated={true} > </Component>
           ) : (
             <Redirect to="/" />
           )

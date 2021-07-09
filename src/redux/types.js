@@ -18,3 +18,8 @@ export const CLEAR_QUERY = "CLEAR_QUERY";
 export const CREATE_SOCKET = "CREATE_SOCKET";
 export const CLEAR_SOCKET = "CLEAR_SOCKET";
 export const LOADING_SOCKET = "LOADING_SOCKET";
+// Alerts
+export const ADD_ALERT = "ADD_ALERT";
+export const REMOVE_ALERT = "REMOVE_ALERT";
+export const CLEAR_ALERTS = "CLEAR_ALERTS";
+export const SET_ALERTS = "SET_ALERTS";

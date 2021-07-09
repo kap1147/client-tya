@@ -1,3 +1,4 @@
+import api from "./api";
 import React from 'react';
 import './App.css';
 import Cookies from 'js-cookie';
@@ -23,33 +24,45 @@ function App() {
   const query = useSelector((state) => state.query);
   const socket = useSelector((state) => state.socket);
   const [refreshToken, setRefreshToken] = React.useState(Cookies.get('refreshToken'));
+  const [accessToken, setAccessToken] = React.useState(localStorage.getItem('accessToken'));
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    if (refreshToken){
-      dispatch(allActions.authActions.setToken(refreshToken, 'r'));
+  React.useEffect(async ()=>{
+    if (refreshToken && !accessToken) {
+      try {
+        var res = await api.getToken();
+	if (res.data.accessToken) {
+          localStorage.setItem('accessToken', res.data.accessToken);
+          dispatch(allActions.authActions.isAuthenticated(true));
+	}
+      } catch (err) {
+	dispatch(allActions.authActions.isAuthenticated(false));
+        console.error(err)
+	alert(err.response.data.error);
+      }
+    } else if (!refreshToken && accessToken) {
+       dispatch(allActions.authActions.isAuthenticated(false));
     };
-  },[refreshToken]);
+  },[refreshToken, accessToken]);
 
   React.useEffect(() => {
-    if (auth) {
-      console.log(auth);
-      if (!auth.authenticated && !auth.accessToken && auth.refreshToken) {
-        dispatch(allActions.authActions.getToken());
-      };
-      if (!auth.authenticated && auth.accessToken && auth.refreshToken) {
-	dispatch(allActions.authActions.isAuthenticated(true));
-	dispatch(allActions.userActions.getUser(auth.accessToken));
-      };
+    if (accessToken && !auth.authenticated) {
+      dispatch(allActions.authActions.isAuthenticated(true));
     };
-  }, [auth, refreshToken]);
+  }, [accessToken, auth]);
 
   React.useEffect(() => {
-    if (user){
+    if (auth.authenticated && !user.authenticated) {
+      dispatch(allActions.userActions.getUser());
+    }
+  }, [auth, user]);
+
+  React.useEffect(() => {
+    if (user.authenticated) {
       console.log(user);
-    };
-  },[user]);
-
+    }
+  }, [ user]);
+	
   React.useEffect(() => {
     if (query.length === 0){
       if ("geolocation" in navigator) {
@@ -62,7 +75,7 @@ function App() {
   }, [query]);
 
   React.useEffect(()=> {
-    if (!socket.socket && user.authenticated && !socket.loading){
+    if (!socket.socket && auth.authenticated && !socket.loading){
       dispatch(allActions.socketActions.createSocket());
     }
     if (socket.socket) {
@@ -70,10 +83,9 @@ function App() {
       dispatch(allActions.socketActions.userOnline(socket.socket));
       return () => {
         dispatch(allActions.socketActions.closeSocket(socket.socket))
-        dispatch(allActions.authActions.clearAuth());
       }
     }
-  }, [socket, user]);
+  }, [socket, auth]);
 
 
   return (

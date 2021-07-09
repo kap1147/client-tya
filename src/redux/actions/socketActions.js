@@ -4,7 +4,9 @@ import io from "socket.io-client";
 const createSocket = () => (dispatch) => {
   dispatch({type: LOADING_SOCKET, payload: true});
   const ENDPOINT = "https://theyardapp.com";
-  const socket = io(ENDPOINT);
+  const socket = io(ENDPOINT, {
+    query: {token: localStorage.getItem('accessToken')}
+  });
   dispatch({type: CREATE_SOCKET, payload: socket});
   dispatch({type: LOADING_SOCKET, payload: false});
 };
@@ -19,7 +21,6 @@ const userOnline = (socket) => (dispatch) => {
    socket.emit('isOnline');
   })
 };
-
 const pingSocket = (socket) => {
   socket.emit("ping");
 }

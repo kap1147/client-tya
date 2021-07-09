@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import allActions from '../../redux/actions/index';
 // Components
-import Search from '../Search.component'
+import AlertsBadgeIcon from './AlertsBadgeIcon.component';
+import Search from '../Search.component';
 // Mui stuff
 import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -154,8 +155,8 @@ export default function PrimarySearchAppBar(props) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
+        <IconButton aria-label="show 3 new mails" color="inherit">
+          <Badge badgeContent={3} color="secondary">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -206,11 +207,7 @@ export default function PrimarySearchAppBar(props) {
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <AlertsBadgeIcon />
             <IconButton
               edge="end"
               aria-label="account of current user"
