@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 // Redux
 import { useDispatch } from "react-redux";
 import allActions from '../../redux/actions/index';
@@ -99,10 +99,17 @@ const StyledToolbar = withStyles({
 export default function PrimarySearchAppBar(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  let history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  
+  React.useEffect(() => {
+      if (props.socket) {
+        props.socket.emit('getAlerts');
+      }
+  }, []);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -199,7 +206,7 @@ export default function PrimarySearchAppBar(props) {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show ad alerts" color="inherit">
+            <IconButton aria-label="show ad alerts" color="inherit" onClick={()=>history.push("/posts")}>
                 <ListAltIcon />
             </IconButton>
             <IconButton aria-label="show 4 new mails" color="inherit">
@@ -207,7 +214,7 @@ export default function PrimarySearchAppBar(props) {
                 <MailIcon />
               </Badge>
             </IconButton>
-            <AlertsBadgeIcon />
+            <AlertsBadgeIcon socket={props.socket} />
             <IconButton
               edge="end"
               aria-label="account of current user"

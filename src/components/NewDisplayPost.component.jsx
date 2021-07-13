@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-export default function DisplayPost({post}) {
+export default function NewDisplayPost({post}) {
   const classes = useStyles();
   return (
     <a 
@@ -85,7 +85,7 @@ export default function DisplayPost({post}) {
     >
       <div className={classes.imageContainerWrapper}>
         <div className={classes.imageConatiner}>
-          <img className={classes.image} alt={post.title} src={post.photos[0]} />
+          <img className={classes.image} alt={post.title} src={post.imageURL} />
         </div>
       </div>
       <div className={classes.infoWrapper}>
@@ -98,7 +98,7 @@ export default function DisplayPost({post}) {
           </Typography>
         </div>
         <Typography className={classes.infoLocal} align='left' variant="body2" noWrap>
-          update local!
+          {post.local}
         </Typography>
       </div>
     </a>

@@ -11,8 +11,10 @@ import SignInPage from './components/pages/SignInPage.component';
 import SignOutPage from './components/pages/SignOutPage.component';
 import ProfilePage from './components/pages/ProfilePage.component';
 import PrivacyPage from './components/pages/PrivacyPage.component';
+import HomePage from './components/pages/HomePage.component';
 import ContactPage from './components/pages/ContactPage.component';
 import AboutPage from './components/pages/AboutPage.component';
+import PostListPage from './components/pages/PostListPage.component';
 import PostDetailPage from './components/pages/post-detail/PostDetailPage.container';
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -34,6 +36,7 @@ function App() {
 	if (res.data.accessToken) {
           localStorage.setItem('accessToken', res.data.accessToken);
           dispatch(allActions.authActions.isAuthenticated(true));
+	  window.location.reload();
 	}
       } catch (err) {
 	dispatch(allActions.authActions.isAuthenticated(false));
@@ -75,28 +78,35 @@ function App() {
   }, [query]);
 
   React.useEffect(()=> {
-    if (!socket.socket && auth.authenticated && !socket.loading){
+    if (!socket.socket && accessToken){
       dispatch(allActions.socketActions.createSocket());
     }
-    if (socket.socket) {
-      console.log(socket);
+    if (socket.socket && accessToken) {
       dispatch(allActions.socketActions.userOnline(socket.socket));
+      dispatch(allActions.alertActions.getAlerts(socket.socket));
+      socket.socket.on('allAlerts', (alerts) => {
+        dispatch(allActions.alertActions.setAlerts(alerts));
+      });
+      socket.socket.on('newAlert', (alert) => {
+        dispatch(allActions.alertActions.addAlert(alert));
+      });
       return () => {
         dispatch(allActions.socketActions.closeSocket(socket.socket))
       }
     }
-  }, [socket, auth]);
+  }, [socket, accessToken]);
 
 
   return (
     <Router>
       <Switch>
         {/* Client app routes */}
-        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/" component={HomePage} />
         <AuthRoute exact path="/home" component={LandingPage} />
+        <AuthRoute exact path="/posts" component={PostListPage} />
         <Route exact path="/signin" component={SignInPage} />
         <AuthRoute exact path="/signout" component={SignOutPage} />
-	<AuthRoute exact path="/profile" component={ProfilePage} />
+	    <AuthRoute exact path="/profile" component={ProfilePage} />
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/privacy" component={PrivacyPage} />

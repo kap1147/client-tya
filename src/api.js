@@ -69,6 +69,9 @@ const api = {
   },
   getUser: () => {
     return axios.get(`${baseUrl}/auth/user`);
+  },
+  getPosts: (id) => {
+    return axios.get(`${baseUrl}/posts/user`);
   }
 };
 

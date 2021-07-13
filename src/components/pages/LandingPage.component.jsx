@@ -5,9 +5,6 @@ import Navbar from '../navbar/Navbar.container';
 import AddPostModal from '../AddPostModal.component';
 import StickyFooter from '../StickyFooter.component';
 import PostCard from '../PostCard.component';
-import PingSocket from '../PingSocket.component';
-import TokenButton from '../TokenButton.component';
-import PingAuthRoute from '../PingAuthRoute.component';
 // Mui stuff
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -29,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LandingPage({isAuthenticated}) {
     const posts = useSelector((state) => state.posts);
     const classes = useStyles();
-    const LandingPageMarkup = isAuthenticated ? <><AddPostModal /><PingSocket /><TokenButton /><PingAuthRoute/></> : null;
+    const LandingPageMarkup = isAuthenticated ? <><AddPostModal /></> : null;
     let postMarkup = posts ? (
       posts.map((post) => (
         <Grid item xs={12} md={4} lg={3} key={post._id}>

@@ -19,6 +19,7 @@ import TimeInput from './TimeInput.component';
 import NumberFormatter from './NumberFormatter.component';
 
 export default function MakeOfferModal(props) {
+    const socket = useSelector((state) => state.socket.socket);
     const [state, setState] = React.useState({open: false, selected: null,});
     const [values, setValues] = React.useState({date: new Date(), price: 0});
     const dispatch = useDispatch();
@@ -33,7 +34,11 @@ export default function MakeOfferModal(props) {
     }
     function handleSubmit() {
       let data = {offerDate: values.date, offerPrice: values.price}
-      dispatch(allActions.postActions.createBid(data, id));
+      //dispatch(allActions.postActions.createBid(data, id));
+      if (socket) {
+        data.postId = id;
+        socket.emit('addBid', data);
+      };
       setState({...state, open: false});
       
     }
