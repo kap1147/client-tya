@@ -73,8 +73,13 @@ function Search({inputRef, onChange, name}) {
           if (value) {
             newOptions = [value];
             const results = await geocodeByAddress(inputValue);
-            console.log(results[0].formatted_address)
+            let filter = results[0].formatted_address.split(',');
             const data = await getLatLng(results[0]);
+            data.lon = data.lng;
+            delete data.lng;
+            data.city = filter[0];
+            data.state = filter[1];
+            console.log(data);
             onChange({
           target: {
             name: name,
@@ -122,7 +127,8 @@ function Search({inputRef, onChange, name}) {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="City, State"
+          underline={false}
+          label="Search..."
           variant="standard"
           color={classes.label}
           fullWidth

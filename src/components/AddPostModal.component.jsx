@@ -147,8 +147,10 @@ export default function AddPostModal() {
     if (values.files) formData.append('images', values.files[0]);
     formData.append('price', values.price);
     formData.append('content', values.content);
-    formData.append('lng', values.search.lng);
+    formData.append('lon', values.search.lon);
     formData.append('lat', values.search.lat);
+    formData.append('city', values.search.city);
+    formData.append('state', values.search.state);
     axios.post("httpS://theyardapp.com/api/posts", formData , { headers })
         .then(res => console.log(res))
         .catch(err => console.log(err))

@@ -70,9 +70,12 @@ const api = {
   getUser: () => {
     return axios.get(`${baseUrl}/auth/user`);
   },
-  getPosts: (id) => {
+  getPosts: () => {
     return axios.get(`${baseUrl}/posts/user`);
-  }
+  },
+  getChatId: (body) => {
+    return axios.post(`${baseUrl}/chat`, body);
+  },
 };
 
 export default api;

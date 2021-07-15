@@ -1,7 +1,10 @@
-import { makeStyles, Typography  } from "@material-ui/core";
+import { Link } from "react-router-dom";
+// MUI Stuff
+import { CardActionArea, makeStyles, Typography  } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     root: {
+      paddingTop: '100px',
       gridRow: 'span 1/span 1',
       width: '100%',
       display: 'flex',
@@ -76,31 +79,35 @@ const useStyles = makeStyles(theme => ({
 
 export default function NewDisplayPost({post}) {
   const classes = useStyles();
+
   return (
+  <CardActionArea component={Link} to={`/posts/${post._id}`}>
     <a 
       className={classes.root} 
-      title={post.title} 
-      aria-label={post.title}
+      title={post.author.alias} 
+      aria-label={post.author.alias}
       href={post.url}
     >
       <div className={classes.imageContainerWrapper}>
         <div className={classes.imageConatiner}>
-          <img className={classes.image} alt={post.title} src={post.imageURL} />
+          <img className={classes.image} alt={post.author.alias} src={post.photos[0]} />
         </div>
       </div>
       <div className={classes.infoWrapper}>
-        <Typography className={classes.infoHeader} align='left' variant="subtitle1" noWrap>
-          {post.title}
-        </Typography>
         <div className={classes.infoPriceWrapper}>
           <Typography className={classes.infoPrice} align='left' variant="body1" noWrap>
             ${post.price}
           </Typography>
         </div>
         <Typography className={classes.infoLocal} align='left' variant="body2" noWrap>
-          {post.local}
+          {post.content} 
         </Typography>
+        <Typography className={classes.infoLocal} align='left' variant="body2" noWrap>
+          {post.city}, {post.state}
+        </Typography>
+
       </div>
     </a>
+  </CardActionArea>
   );
 };

@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core";
+import { useSelector } from "react-redux";
+// Components
 import NewDisplayPost from './NewDisplayPost.component';
-import Posts from './post';
 
 const useStyles = makeStyles({
   root: {
@@ -29,14 +30,15 @@ const useStyles = makeStyles({
 
 export default function PostReel() {
   const classes = useStyles();
-  const posts = Posts;
+  const posts = useSelector((state) => state.posts);
+  console.log(posts);
   return (
     <div className={classes.root} >
           <div className={classes.mainRow1}> 
             <>
               <div className={classes.postsRow}>
                 <div className={classes.postRowGrid}> 
-                   {posts ? posts.map((post) => <NewDisplayPost post={post} />) : <p>loading post...</p>}
+                   {posts.length ? posts.map((post) => <NewDisplayPost post={post} />) : <p>No post found...</p>}
                 </div>
               </div>
               <div className={classes.loadMoreRow}> </div>

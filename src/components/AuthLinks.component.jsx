@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
       cursor: "pointer"
     }
   },
-  dropdownContent: {
+  alertDropdownContent: {
     height: '350px',
     position: "absolute",
     backgroundColor: '#f9f9f9',
@@ -42,6 +42,26 @@ const useStyles = makeStyles((theme) => ({
     overflowY: 'auto',
     right: '4px',
     borderRadius: '3px',
+    "&::-webkit-scrollbar":{
+      display: 'none'
+    },
+    "& > *": {
+      "&:hover": {
+        cursor: 'pointer'
+	  }
+    }
+  },
+  dropdownContent: {
+    position: "absolute",
+    backgroundColor: '#f9f9f9',
+    boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+    zIndex: 1,
+    overflowY: 'auto',
+    right: '4px',
+    borderRadius: '3px',
+    "&::-webkit-scrollbar":{
+      display: 'none'
+    },
     "& > *": {
       borderBottom: '1px solid',
       "&:hover": {
@@ -69,7 +89,7 @@ export default function AuthLinks() {
               </Badge>
             </div>
 	    {isAlertOpen && (
-              <div className={classes.dropdownContent}>
+              <div className={classes.alertDropdownContent}>
                 {alerts.map(alert => <NewAlert alert={alert} />)}
 	      </div>
 	    )}

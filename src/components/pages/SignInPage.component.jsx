@@ -63,7 +63,6 @@ export default function SignInPage() {
   return (
 
     <div className="root">
-      <Navbar />
       <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>

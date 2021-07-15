@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 // Components
 import MakeOfferModal from './MakeOfferModal.component';
 // Mui stuff
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = ({user}) => {
     const classes = useStyles();
+    let history = useHistory();
     const [state, setState] = React.useState({modalOpen: false})
 
     function handleModalClick(){
@@ -65,7 +67,7 @@ const Profile = ({user}) => {
                 
                 <div className={classes.buttons}>
                     <MakeOfferModal />
-                    <Button color="secondary"fullWidth variant='contained'>Send Message</Button>
+                    <Button color="secondary"fullWidth variant='contained' onClick={()=> history.push(`/chat/user/${user._id}`)}>Send Message</Button>
                 </div>
             </div>
         </div> : <p>loading...</p> 

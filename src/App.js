@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // HOCs
 import AuthRoute from './utils/hocs/AuthRoute.hoc';
 // Pages
+import ChatPage from './components/pages/ChatPage.component';
 import LandingPage from './components/pages/LandingPage.component';
 import SignInPage from './components/pages/SignInPage.component';
 import SignOutPage from './components/pages/SignOutPage.component';
@@ -27,6 +28,11 @@ function App() {
   const socket = useSelector((state) => state.socket);
   const [refreshToken, setRefreshToken] = React.useState(Cookies.get('refreshToken'));
   const [accessToken, setAccessToken] = React.useState(localStorage.getItem('accessToken'));
+  const [geo, setGeo] = React.useState(localStorage.getItem('geo'));
+  const [geoCity, setGeoCity] = React.useState(localStorage.getItem('geo_city'));
+  const [geoState, setGeoState] = React.useState(localStorage.getItem('geo_state'));
+  const [geoLon, setGeoLon] = React.useState(localStorage.getItem('geo_lon'));
+  const [geoLat, setGeoLat] = React.useState(localStorage.getItem('geo_lat'));
   const dispatch = useDispatch();
 
   React.useEffect(async ()=>{
@@ -67,15 +73,17 @@ function App() {
   }, [ user]);
 	
   React.useEffect(() => {
-    if (query.length === 0){
+    if (geo && query.length === 0) { 
+		dispatch(allActions.queryActions.setQuery({lon: geoLon, lat: geoLat, city: geoCity, state: geoState}));
+    } else if (query.length === 0 && !geo){
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(position) {
-          dispatch(allActions.queryActions.setQuery({lng:position.coords.longitude, lat: position.coords.latitude}))
+          dispatch(allActions.queryActions.initializeQuery({lng:position.coords.longitude, lat: position.coords.latitude}))
         });
       }
-    }
+    };
     dispatch(allActions.postActions.fetchPosts(query));
-  }, [query]);
+  }, [query, geo]);
 
   React.useEffect(()=> {
     if (!socket.socket && accessToken){
@@ -106,7 +114,8 @@ function App() {
         <AuthRoute exact path="/posts" component={PostListPage} />
         <Route exact path="/signin" component={SignInPage} />
         <AuthRoute exact path="/signout" component={SignOutPage} />
-	    <AuthRoute exact path="/profile" component={ProfilePage} />
+	<AuthRoute exact path="/profile" component={ProfilePage} />
+	<AuthRoute exact path="/chat/user/:userId" component={ChatPage} />
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/privacy" component={PrivacyPage} />

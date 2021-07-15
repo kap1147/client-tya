@@ -1,6 +1,6 @@
 import { SET_POST, CLEAR_POST } from "../types";
 
-const initialState = null;
+const initialState = [];
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = initialState, action) {

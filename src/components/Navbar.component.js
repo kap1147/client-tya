@@ -1,9 +1,14 @@
-import AuthLinks from './AuthLinks.component';
-import Links from './Links.component';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 // Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import allActions from '../redux/actions'
+// Components
+import AuthLinks from './AuthLinks.component';
+import FormLocation from './FormLocation.component';
+import Links from './Links.component';
 // MUI Stuff
-import { AppBar, Grid, InputBase, IconButton, Paper, makeStyles} from "@material-ui/core";
+import { AppBar, Grid, IconButton, InputBase, makeStyles, Paper, TextField } from "@material-ui/core";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -40,7 +45,13 @@ const useStyle = makeStyles(theme => ({
   input: {
     marginLeft: theme.spacing(1),
     flex: 1,
-    color: '#3aa0b0'
+    color: '#3aa0b0',
+    bottomBorder: 0,
+   	"& > *": {
+	  "&::before": {
+        borderBottom: 'none',
+      }
+    }
   },
   iconButton: {
     width: '40px',
@@ -62,8 +73,20 @@ const useStyle = makeStyles(theme => ({
 export default function Navbar() {
   const query = useSelector((state) => state.query);
   const { authenticated } = useSelector((state) => state.auth);
+  const [ value, setValue ] = useState({});
+  const dispatch = useDispatch();
   const classes = useStyle();
-  if (authenticated) console.log('isAuthenticated: ', authenticated );
+  
+  function handleChange(event) {
+    setValue({
+      ...value,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  function handleClick(event) {
+      dispatch(allActions.queryActions.setQuery({...value.search}));
+  };
 
   return (
     <AppBar 
@@ -82,18 +105,24 @@ export default function Navbar() {
           <Grid item xs>
             <Grid container spacing='2' wrap='nowrap' alignItems='center'>
               <Grid className={classes.logoWrapper} item>
-                <h3>TheYardApp</h3>
+                <h3><Link to='/home'>TheYardApp</Link></h3>
               </Grid>
               <Grid className={classes.searchContainer} item xs>
                 <Paper component='form' className={classes.formWrapper} elevation={0}>
-                  <InputBase
-                    className={classes.input}
-                    placeholder="Search..."
-                    inputProps={{ 'aria-label': 'search posts' }}
-                  />
+                  <TextField
+        value={value}
+        onChange={handleChange}
+        name="search"
+        className={classes.input}
+        id="search"
+        InputProps={{
+          inputComponent: FormLocation,
+          'aria-label': 'Search'
+        }}
+      />
                   
                 </Paper>
-                <IconButton type="submit" className={classes.iconButton} aria-label="search">
+                <IconButton type="submit" className={classes.iconButton} aria-label="submit" onClick={handleClick}>
                     <SearchIcon />
                   </IconButton>
               </Grid>
