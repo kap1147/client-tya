@@ -1,5 +1,6 @@
-import React from 'react';
 import './post.styles.scss';
+// Redux
+import { useSelector } from "react-redux";
 // Components
 import ImageContainer from '../../ImagePreview.component';
 import PostContent from './PostContent.component';
@@ -17,12 +18,15 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 const Post = ({post}) => {
     dayjs.extend(relativeTime);
+    const {user} = useSelector((state) => state.user);
     const imageContainerMarkUp = post.photos ? <ImageContainer post={post} /> : <p>...loading images</p>;
     const content = post ? <PostContent post={post} /> : <p>...loading content</p>
     const mapMarkup = post.location 
     ? <div className="mapWrapper">
       <GoogleMapComponent position={{lng: post.location.coordinates[0],lat: post.location.coordinates[1]}}></GoogleMapComponent><Typography>Locations are approximate to protect user's privacy.</Typography></div> 
     : <p>...Loading</p>
+    if (user) console.log('user: ', user);
+    if (post) console.log('post: ', post);
     const postMarkup = post ?  
         <div className="container">
       <div id="imageContainer">{imageContainerMarkUp}</div>
@@ -46,7 +50,7 @@ const Post = ({post}) => {
         </div>
         <div className='col-3'></div>
       </div>
-      <div id="profile"><ProfileCard user={post.author}/></div>
+      {user && post && post.author && (user._id !== post.author._id) && <div id="profile"><ProfileCard user={post.author}/></div>}
     </div>
     : <p>Loading Post</p>
     return postMarkup;
