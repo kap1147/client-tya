@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from "react-redux";
 // Components
-import Navbar from '../navbar/Navbar.container';
+import Navbar from '../Navbar.component';
 import AddPostModal from '../AddPostModal.component';
 import StickyFooter from '../StickyFooter.component';
 import PostCard from '../PostCard.component';

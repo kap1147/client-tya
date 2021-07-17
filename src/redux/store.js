@@ -5,6 +5,7 @@ import alertReducer from "./reducers/alertReducer";
 import authReducer from "./reducers/authReducer";
 import userReducer from "./reducers/userReducer";
 import queryReducer from "./reducers/queryReducer";
+//import messageReducer from "./reducers/messageReducer";
 import postReducer from "./reducers/postReducer";
 import socketReducer from "./reducers/socketReducer";
 
@@ -18,7 +19,7 @@ const reducers = combineReducers({
     user: userReducer,
     posts: postReducer,
     query: queryReducer,
-    socket: socketReducer
+    socket: socketReducer,
 });
 
 

@@ -34,7 +34,7 @@ const Post = ({post}) => {
                 <div className="price"><PriceWrapper price={post.price} /></div>
                 <div className="type">Residential</div>
             </div>
-            <div className="point"><Point location={post.location} /></div>
+            <div className="point"><Point state={post.state} city={post.city} /></div>
             <div className="timestamp"><AccessTimeIcon style={{'padding-right':'3px'}}/>{dayjs(post.timestamp).fromNow()}</div>
             <hr />
             <div className="tags">{post.tags ? <Tags tags={post.tags}/> : null}</div>

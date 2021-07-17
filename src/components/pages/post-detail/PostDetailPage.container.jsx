@@ -3,7 +3,7 @@ import Axios from "axios";
 //Components
 import PostDetail from "./post-detail.component";
 import Post from './Post.component.jsx';
-import Navbar from '../../navbar/Navbar.container';
+import Navbar from '../../Navbar.component';
 // MUI Stuff
 import { makeStyles } from "@material-ui/core";
 

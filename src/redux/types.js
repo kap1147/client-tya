@@ -1,3 +1,7 @@
+// Messages
+export const SET_MESSAGES = 'SET_MESSAGES';
+export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const REMOVE_MESSAGE = 'REMOVE_MESSAGE';
 // Authentication
 export const SET_AUTH = 'SET_AUTH';
 export const CLEAR_AUTH = 'CLEAR_AUTH';

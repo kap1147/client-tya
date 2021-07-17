@@ -105,7 +105,7 @@ export default function Navbar() {
           <Grid item xs>
             <Grid container spacing='2' wrap='nowrap' alignItems='center'>
               <Grid className={classes.logoWrapper} item>
-                <h3><Link to='/home'>TheYardApp</Link></h3>
+                <h3><Link to='/'>TheYardApp</Link></h3>
               </Grid>
               <Grid className={classes.searchContainer} item xs>
                 <Paper component='form' className={classes.formWrapper} elevation={0}>
