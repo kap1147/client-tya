@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 // Components
 import NewAlert from './NewAlert.component';
 // Mui Stuff
@@ -77,7 +78,8 @@ export default function AuthLinks() {
   const alerts = useSelector((state) => state.alerts);
   const [isOpen, setIsOpen] = useState();
   const [isAlertOpen, setIsAlertOpen] = useState();
-  if (alerts) console.log(alerts);
+  let history = useHistory()
+
   return (
     <div className={classes.linksWrapper}>
       <div className={classes.link}>
@@ -98,7 +100,7 @@ export default function AuthLinks() {
       </div>
       <div className={classes.link}>
         <Badge badgeContent={1} color="primary">
-          <MailIcon />
+          <MailIcon onClick={()=>history.push('/inbox')}/>
         </Badge>
       </div>
       <div className={classes.dropdown} onClick={() => setIsOpen(!isOpen)}>

@@ -93,7 +93,10 @@ const useStyles = makeStyles(theme => ({
   time: {
     fontSize: ".75rem",
     color: '#ababab',
-  }
+  },
+  icon: {
+    color: 'green'
+  },
 }));
 
 export default function ChatPage(props) {
@@ -155,7 +158,7 @@ export default function ChatPage(props) {
 	  <Grid className={classes.container}>
 	    <div className={classes.chat}>
               <div className={classes.header}>
-                <Typography variant="h4">Welcome, you're chatting with {friend &&  <>{friend.alias}. </> }{isViewing.length !== 0 && <><FiberManualRecordIcon /> Viewing</>}</Typography>
+                <Typography variant="h4">Welcome, you're chatting with {friend &&  <>{friend.alias}. </> }{isViewing.length !== 0 && <><FiberManualRecordIcon className={classes.icon} /> Viewing</>}</Typography>
               </div>
               <div className={classes.body}>
                 {messages.length !== 0 && messages.map(message => {
