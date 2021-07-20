@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 // MUI Stuff
-import { CardActionArea, makeStyles, Typography  } from "@material-ui/core";
+import { CardActionArea, makeStyles, Paper, Typography  } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     root: {
-      paddingTop: '100px',
       gridRow: 'span 1/span 1',
       width: '100%',
       display: 'flex',
@@ -51,7 +50,7 @@ const useStyles = makeStyles(theme => ({
       padding: '6px 0px 2px',
       flexDirection: 'column',
       [theme.breakpoints.up('sm')]: {
-        padding: '8px 0px',
+        padding: '8px 5px',
         height: 'initial'
       }
     },
@@ -73,7 +72,10 @@ const useStyles = makeStyles(theme => ({
       paddingRight: '8px',
     },
     infoLocal: {
-      color: '#8a8a8a',
+      color: '#2f2f2f',
+    },
+    infoContent: {
+      color: '#8e8e8e',
     },
   }));
 
@@ -82,6 +84,7 @@ export default function NewDisplayPost({post}) {
 
   return (
   <CardActionArea component={Link} to={`/posts/${post._id}`}>
+   <Paper>
     <a 
       className={classes.root} 
       title={post.author.alias} 
@@ -99,15 +102,16 @@ export default function NewDisplayPost({post}) {
             ${post.price}
           </Typography>
         </div>
-        <Typography className={classes.infoLocal} align='left' variant="body2" noWrap>
+        <Typography className={classes.infoContent} align='left' variant="body2" noWrap>
           {post.content} 
         </Typography>
         <Typography className={classes.infoLocal} align='left' variant="body2" noWrap>
-          {post.city}, {post.state}
+         {post.city}, {post.state}
         </Typography>
 
       </div>
     </a>
+   </Paper>
   </CardActionArea>
   );
 };

@@ -13,14 +13,27 @@ import ProfileCard from '../../ProfileCard.component';
 import dayjs from 'dayjs';
 import relativeTime from "dayjs/plugin/relativeTime";
 // Mui stuff
+import { Button, makeStyles } from '@material-ui/core';
+import EmojiFlagsIcon from '@material-ui/icons/EmojiFlags';
 import Typography from '@material-ui/core/Typography';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+
+const useStyles = makeStyles({
+  button: {
+    background: 'red',
+    color: 'white'
+  },
+  icon: {
+    color: 'white'
+  },
+});
 
 const Post = ({post}) => {
     dayjs.extend(relativeTime);
     const {user} = useSelector((state) => state.user);
     const imageContainerMarkUp = post.photos ? <ImageContainer post={post} /> : <p>...loading images</p>;
     const content = post ? <PostContent post={post} /> : <p>...loading content</p>
+    const classes = useStyles();
     const mapMarkup = post.location 
     ? <div className="mapWrapper">
       <GoogleMapComponent position={{lng: post.location.coordinates[0],lat: post.location.coordinates[1]}}></GoogleMapComponent><Typography>Locations are approximate to protect user's privacy.</Typography></div> 
@@ -46,7 +59,11 @@ const Post = ({post}) => {
             <div className="description">{post.content}</div>
             <div className="map">{mapMarkup}</div>
             <hr />
-            <div className="report">Report Button</div>
+            <div className="report">
+              <Button className={classes.button}>
+                <EmojiFlagsIcon className={classes.icon}/> Report
+	      </Button>
+	    </div>
         </div>
         <div className='col-3'></div>
       </div>

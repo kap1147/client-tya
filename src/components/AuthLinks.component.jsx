@@ -1,6 +1,8 @@
+import api from '../api';
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import allActions from '../redux/actions';
 // Components
 import NewAlert from './NewAlert.component';
 // Mui Stuff
@@ -78,7 +80,17 @@ export default function AuthLinks() {
   const alerts = useSelector((state) => state.alerts);
   const [isOpen, setIsOpen] = useState();
   const [isAlertOpen, setIsAlertOpen] = useState();
-  let history = useHistory()
+  let history = useHistory();
+  let dispatch = useDispatch();
+
+  async function handleLogout(){
+    let res = await api.logout();
+    if (res.status === 200) {
+      dispatch(allActions.authActions.isAuthenticated(false));
+    } else {
+      console.error('Something went wrong');
+    }
+  }
 
   return (
     <div className={classes.linksWrapper}>
@@ -118,7 +130,7 @@ export default function AuthLinks() {
           </div>
         )}
       </div>
-      <div className={classes.link}>Logout</div>
+      <div className={classes.link} onClick={handleLogout}>Logout</div>
     </div>
   );
 }

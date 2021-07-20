@@ -61,8 +61,8 @@ const api = {
   refreshToken: (body) => {
     return axios.post(`${baseUrl}/auth/refresh_token`, body);
   },
-  logout: (body) => {
-    return axios.delete(`${baseUrl}/auth/logout`, body);
+  logout: () => {
+    return axios.get(`${baseUrl}/auth/logout`);
   },
   getProtected: () => {
     return axios.get(`${baseUrl}/protected_resource`);

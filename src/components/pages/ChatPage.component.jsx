@@ -196,7 +196,7 @@ export default function ChatPage(props) {
                              </Typography>
                            </div>
                          </div>
-			 <ScrollToBottom />
+			 { (messages.length > 11) && <ScrollToBottom />}
                        </div>
                 }})}
          
